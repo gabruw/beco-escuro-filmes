@@ -1,0 +1,61 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        // "airbnb",
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    // "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        // "@typescript-eslint",
+        "react",
+        "react-hooks"
+    ],
+    "rules": {
+        "semi": 1,
+        "indent": [1, 4],
+        "quotes": [1, "single"],
+        "max-len": [1, 150],
+        "comma-dangle": "off",
+        "no-console": "warn",
+        "camelcase": 0,
+        "eqeqeq": 2,
+        "no-var": 2,
+        "no-debugger": "warn",
+        "no-extra-semi": 1,
+        "import/no-unresolved": 0,
+        "prefer-arrow-callback": 2,
+        "import/prefer-default-export": "off",
+        "react/prop-types": 0,
+        "react/destructuring-assignment": "warn",
+        "no-underscore-dangle": 0,
+        "import/imports-first": "off",
+        "import/newline-after-import": "off",
+        "no-param-reassign": "off",
+        "no-use-before-define": "off",
+        "prefer-destructuring": "warn",
+        "no-case-declarations": "warn",
+        "react/no-array-index-key": "warn",
+        "no-bitwise": "off",
+        "no-empty-pattern": "warn",
+        "no-extra-boolean-cast": "warn",
+        "no-nested-ternary": "off",
+        "react/jsx-indent": [2, 4],
+        "react/jsx-indent-props": [2, 4],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "padded-blocks": "off"
+    }
+}
