@@ -10,4 +10,4 @@ export class Erro extends Component {
     }
 }
 
-export default Home;
+export default Erro;
