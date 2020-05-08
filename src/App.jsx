@@ -1,19 +1,15 @@
 //#region Imports
 
-import React from 'react';
-import { Provider } from 'react-redux';
-
+import React, { Fragment } from 'react';
 import AppRoutes from './AppRoutes';
 
 //#endregion
 
 function App() {
     return (
-        <React.Fragment>
-            <Provider store={store}>
-                <AppRoutes />
-            </Provider>
-        </React.Fragment>
+        <Fragment>
+            <AppRoutes />
+        </Fragment>
     );
 }
 
