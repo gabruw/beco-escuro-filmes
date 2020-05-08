@@ -1,2 +1,2 @@
-# beco-escuro-filmes
+# Beco Escuro Filmes
 Uma aplicação react que consome a API TMDB
