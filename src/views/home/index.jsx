@@ -1,13 +1,16 @@
 //#region Imports
 
-import React, { Fragment, Component } from 'react';
+import React, { Fragment } from 'react';
+import NavBar from '../../components/NavBar/index';
 
 //#endregion
 
-export class Home extends Component {
-    render() {
-        return <Fragment></Fragment>;
-    }
-}
+const Home = () => {
+    return (
+        <Fragment>
+            <NavBar />
+        </Fragment>
+    );
+};
 
 export default Home;
