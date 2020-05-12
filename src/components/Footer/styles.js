@@ -10,7 +10,7 @@ export const useStyles = () => {
         createStyles({
             background: {
                 height: '300px',
-                backgroundColor: COLOR.PRIMARY,
+                backgroundColor: COLOR.SECONDARY,
             },
         })
     );

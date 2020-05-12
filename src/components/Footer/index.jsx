@@ -2,7 +2,7 @@
 
 import React, { Fragment } from 'react';
 
-import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
 
 //#endregion
@@ -12,7 +12,7 @@ const Footer = () => {
 
     return (
         <Fragment>
-            <Paper elevation={0} className={styles.background} />
+            <Grid container className={styles.background}></Grid>
         </Fragment>
     );
 };
