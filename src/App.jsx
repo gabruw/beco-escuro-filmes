@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import AppRoutes from './AppRoutes';
 
+import './assets/styles/global.css';
+
 //#endregion
 
 function App() {

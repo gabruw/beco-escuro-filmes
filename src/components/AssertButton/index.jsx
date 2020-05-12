@@ -3,9 +3,7 @@
 import React, { Fragment } from 'react';
 
 import Button from '@material-ui/core/Button';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-
-import { styles as StyleComponent } from './styles';
+import useStyles from './styles';
 
 //#endregion
 
@@ -16,10 +14,10 @@ const AssertButton = ({
     isDisabled = false,
     text = 'Sample Text',
 }) => {
-    const styles = makeStyles(() => createStyles(StyleComponent(isPrimaryOutlined)));
+    const styles = useStyles(isPrimaryOutlined);
 
     const variant = isContained ? 'contained' : 'outlined';
-    const className = isContained ? styles().contained : styles().outlined;
+    const className = isContained ? styles.contained : styles.outlined;
     return (
         <Fragment>
             <Button variant={variant} className={className} startIcon={haveIcon} disabled={isDisabled}>

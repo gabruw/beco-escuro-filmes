@@ -1,16 +1,21 @@
 //#region Imports
 
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { COLOR } from '../../assets/styles/color';
 
 //#endregion
 
-export const styles = () => {
-    return {
-        background: {
-            height: '300px',
-            backgroundColor: COLOR.PRIMARY,
-        },
-    };
+export const useStyles = () => {
+    const styles = makeStyles(() =>
+        createStyles({
+            background: {
+                height: '300px',
+                backgroundColor: COLOR.PRIMARY,
+            },
+        })
+    );
+
+    return styles();
 };
 
-export default styles;
+export default useStyles;

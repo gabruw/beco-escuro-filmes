@@ -1,24 +1,33 @@
 //#region Imports
 
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+
 import { COLOR } from '../../assets/styles/color';
+import { MARGIN } from '../../assets/styles/margin';
 
 //#endregion
 
-export const styles = (theme) => {
-    return {
-        background: {
-            backgroundColor: COLOR.SECONDARY,
-        },
-        iconButton: {
-            marginRight: theme.spacing(2),
-        },
-        icon: {
-            color: COLOR.WHITE,
-        },
-        rigthContent: {
-            position: 'relative',
-        },
-    };
+export const useStyles = () => {
+    const styles = makeStyles((theme) =>
+        createStyles({
+            background: {
+                backgroundColor: COLOR.SECONDARY,
+            },
+            btnMargin: {
+                marginRight: theme.spacing(MARGIN.BUTTON),
+            },
+            icon: {
+                color: COLOR.WHITE,
+            },
+            alignRight: {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+            },
+        })
+    );
+
+    return styles();
 };
 
-export default styles;
+export default useStyles;

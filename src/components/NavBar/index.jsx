@@ -2,31 +2,37 @@
 
 import React, { Fragment } from 'react';
 
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import { AppBar, Toolbar } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import AssertButton from '../AssertButton/index';
-import { styles as StyleComponent } from './styles';
+import useStyles from './styles';
 
 //#endregion
 
 const NavBar = () => {
-    const styles = makeStyles((theme) => createStyles(StyleComponent(theme)));
+    const styles = useStyles();
 
     return (
         <Fragment>
-            <AppBar className={styles().background} position={'static'}>
+            <AppBar className={styles.background} position={'static'}>
                 <Toolbar>
-                    <IconButton className={styles().iconButton} edge='start' aria-label='menu'>
-                        <MenuIcon className={styles().icon} />
+                    <IconButton className={styles.btnMargin} edge='start' aria-label='menu'>
+                        <MenuIcon className={styles.icon} />
                     </IconButton>
 
-                    <div className={styles().rigthContent}>
-                        <AssertButton text={'Registrar'} />
-                        <AssertButton isContained={false} isPrimaryOutlined={true} text={'Entrar'} />
-                    </div>
+                    <Grid container>
+                        <Grid item xs={10}></Grid>
+                        <Grid item xs={2} className={styles.alignRight}>
+                            <div className={styles.btnMargin}>
+                                <AssertButton text={'Registrar'} />
+                            </div>
+                            <AssertButton isContained={false} isPrimaryOutlined={true} text={'Entrar'} />
+                        </Grid>
+                    </Grid>
                 </Toolbar>
             </AppBar>
         </Fragment>
