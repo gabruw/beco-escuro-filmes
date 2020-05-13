@@ -14,8 +14,8 @@ import useStyles from './styles';
 //#endregion
 
 const SearchField = ({ searchIn }) => {
-    const [loading, setLoading] = useState(false);
     const styles = useStyles();
+    const [loading, setLoading] = useState(false);
 
     const search = async (value) => {
         setLoading(true);
