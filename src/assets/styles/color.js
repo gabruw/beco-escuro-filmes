@@ -1,7 +1,8 @@
 export const COLOR = {
+    WHITE: '#FFFFFF',
     PRIMARY: '#488991',
     SECONDARY: '#343434',
-    WHITE: '#FFFFFF',
+    LIGHT_GRAY: '#F2F2F2',
 };
 
 export const SHADOW = {

@@ -3,23 +3,21 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import { COLOR } from '../../assets/styles/color';
-import { ALIGN, MARGIN } from '../../assets/styles/align';
+import { ALIGN } from '../../assets/styles/align';
 
 //#endregion
 
 export const useStyles = () => {
     const styles = makeStyles((theme) =>
         createStyles({
+            alignCenter: ALIGN.ALIGN_CENTER,
             background: {
-                backgroundColor: COLOR.SECONDARY,
+                backgroundColor: COLOR.LIGHT_GRAY,
+                minHeight: '200px',
             },
-            btnMargin: {
-                marginRight: theme.spacing(MARGIN.BUTTON),
+            marginTop: {
+                marginTop: theme.spacing(4),
             },
-            icon: {
-                color: COLOR.WHITE,
-            },
-            alignRight: ALIGN.ALIGN_RIGHT,
         })
     );
 
