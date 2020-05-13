@@ -1,17 +1,27 @@
 //#region Imports
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import Search from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+import EVENTS from './../../library/events';
 
 import useStyles from './styles';
 
 //#endregion
 
-const SearchField = () => {
+const SearchField = ({ searchIn }) => {
+    const [loading, setLoading] = useState(false);
     const styles = useStyles();
+
+    const search = async (value) => {
+        setLoading(true);
+        await searchIn(value);
+        setLoading(false);
+    };
 
     return (
         <Fragment>
@@ -23,10 +33,15 @@ const SearchField = () => {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position='start'>
-                            <Search className={styles.icon} />
+                            {loading ? (
+                                <CircularProgress className={styles.loading} size={20} />
+                            ) : (
+                                <Search className={styles.icon} />
+                            )}
                         </InputAdornment>
                     ),
                 }}
+                onKeyUp={(e) => (EVENTS.ON_PRESS_ENTER(e) ? search(e.target.value) : null)}
             />
         </Fragment>
     );

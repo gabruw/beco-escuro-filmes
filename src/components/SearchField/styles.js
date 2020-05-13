@@ -14,6 +14,10 @@ export const useStyles = () => {
             icon: {
                 color: COLOR.SECONDARY,
             },
+            loading: {
+                color: COLOR.SECONDARY,
+                marginRight: '4px',
+            },
         })
     );
 
