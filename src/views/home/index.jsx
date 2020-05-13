@@ -1,13 +1,21 @@
 //#region Imports
 
-import React, { Fragment, Component } from 'react';
+import React, { Fragment } from 'react';
+
+import NavBar from '../../components/NavBar/index';
+import Footer from '../../components/Footer/index';
+import MoviePresentation from '../../components/MoviePresentation/index';
 
 //#endregion
 
-export class Home extends Component {
-    render() {
-        return <Fragment></Fragment>;
-    }
-}
+const Home = () => {
+    return (
+        <Fragment>
+            <NavBar />
+            <MoviePresentation />
+            <Footer />
+        </Fragment>
+    );
+};
 
 export default Home;
