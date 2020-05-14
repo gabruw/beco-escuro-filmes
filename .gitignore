@@ -9,7 +9,7 @@
 /coverage
 
 # keys
-/src/library/keys.js
+#/src/library/keys.js
 
 # production
 /build
