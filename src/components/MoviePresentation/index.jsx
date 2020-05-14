@@ -1,8 +1,9 @@
 //#region Imports
 
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 
+import MovieList from './../MovieList/index';
 import SearchField from '../SearchField/index';
 import ModalStyled from './../../containers/ModalStyled/index';
 
@@ -16,7 +17,9 @@ import useStyles from './styles';
 
 const MoviePresentation = () => {
     const styles = useStyles();
+
     const handleModalSelectMovies = useRef();
+    const [movieList, setMovieList] = useState([]);
 
     const getMovies = async (title) => {
         title = blankEncodeToUrl(title);
@@ -26,12 +29,20 @@ const MoviePresentation = () => {
             data: { results, total_results },
         } = await API.get(ENDPOINTS.TMDB_MOVIES_BY_TITLE(title));
 
+        console.log('results', results);
+        console.log('total_results', total_results);
+
         if (STATUS.OK(status)) {
-            if (total_results === 1) {
-                getOneOf(results[0].id);
-            } else if (total_results > 1) {
+            if (total_results > 0) {
+                setMovieList(results);
                 handleModalSelectMovies.current.handleModal();
             }
+
+            // if (total_results === 1) {
+            //     setMovieList(getOneOf(results[0].id));
+            // } else if (total_results > 1) {
+            //     handleModalSelectMovies.current.handleModal();
+            // }
         }
 
         return results;
@@ -54,6 +65,7 @@ const MoviePresentation = () => {
         return object;
     };
 
+    console.log('movieList', movieList);
     return (
         <Fragment>
             <Grid container className={styles.background}>
@@ -64,7 +76,7 @@ const MoviePresentation = () => {
                 </Grid>
             </Grid>
 
-            <ModalStyled ref={handleModalSelectMovies} />
+            <ModalStyled ref={handleModalSelectMovies} body={<MovieList list={movieList} />} />
         </Fragment>
     );
 };

@@ -41,6 +41,7 @@ const SearchField = ({ searchIn }) => {
                         </InputAdornment>
                     ),
                 }}
+                value='A Horse Tale'
                 onKeyUp={(e) => (EVENTS.ON_PRESS_ENTER(e) ? search(e.target.value) : null)}
             />
         </Fragment>

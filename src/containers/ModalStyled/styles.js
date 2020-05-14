@@ -1,16 +1,16 @@
 //#region Imports
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { ALIGN, MARGIN } from './../../assets/styles/align';
 
 //#endregion
 
 export const useStyles = () => {
     const styles = makeStyles((theme) =>
         createStyles({
-            modal: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+            alignCenter: Object.assign({ marginTop: '35px' }, ALIGN.ALIGN_CENTER),
+            btnMargin: {
+                marginRight: theme.spacing(MARGIN.BUTTON),
             },
             paper: {
                 backgroundColor: theme.palette.background.paper,
