@@ -6,12 +6,12 @@ import Fade from '@material-ui/core/Fade';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 
-// import useStyles from './styles';
+import useStyles from './styles';
 
 //#endregion
 
 const ModalStyled = forwardRef((props, ref) => {
-    // const styles = useStyles();
+    const styles = useStyles();
     const [open, setOpen] = useState(false);
 
     useImperativeHandle(ref, () => ({
@@ -24,6 +24,7 @@ const ModalStyled = forwardRef((props, ref) => {
         <Fragment>
             <Modal
                 open={open}
+                className={styles.modal}
                 onClose={() => ref.current.handleModal()}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
@@ -34,9 +35,9 @@ const ModalStyled = forwardRef((props, ref) => {
                 aria-describedby={'transition-modal-description'}
             >
                 <Fade in={open}>
-                    <div>
-                        <h2>Transition modal</h2>
-                        <p>react-transition-group animates me.</p>
+                    <div className={styles.paper}>
+                        <h2 id='transition-modal-title'>Transition modal</h2>
+                        <p id='transition-modal-description'>react-transition-group animates me.</p>
                     </div>
                 </Fade>
             </Modal>
