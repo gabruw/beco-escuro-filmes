@@ -11,7 +11,7 @@ import useStyles from './styles';
 //#endregion
 
 const ModalStyled = forwardRef((props, ref) => {
-    const styles = useStyles();
+    // const styles = useStyles();
     const [open, setOpen] = useState(false);
 
     useImperativeHandle(ref, () => ({

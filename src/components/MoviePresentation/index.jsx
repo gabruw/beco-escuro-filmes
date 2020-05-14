@@ -28,12 +28,13 @@ const MoviePresentation = () => {
 
         if (STATUS.OK(status)) {
             if (total_results === 1) {
+                getOneOf(results[0].id);
             } else if (total_results > 1) {
                 handleModalSelectMovies.current.handleModal();
             }
         }
 
-        return '';
+        return results;
     };
 
     const getOneOf = async (id) => {
