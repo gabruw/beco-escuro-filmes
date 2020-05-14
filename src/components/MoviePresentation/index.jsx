@@ -48,22 +48,22 @@ const MoviePresentation = () => {
         return results;
     };
 
-    const getOneOf = async (id) => {
-        const { data } = await API.get(ENDPOINTS.TMDB_MOVIES_BY_ID(id));
-        const object = {
-            id: data.id,
-            genres: data.genres,
-            original_title: data.original_title,
-            overview: data.overview,
-            poster_path: data.poster_path,
-            release_date: data.release_date,
-            runtime: data.runtime,
-            title: data.title,
-            vote_average: data.vote_average,
-        };
+    // const getOneOf = async (id) => {
+    //     const { data } = await API.get(ENDPOINTS.TMDB_MOVIES_BY_ID(id));
+    //     const object = {
+    //         id: data.id,
+    //         genres: data.genres,
+    //         original_title: data.original_title,
+    //         overview: data.overview,
+    //         poster_path: data.poster_path,
+    //         release_date: data.release_date,
+    //         runtime: data.runtime,
+    //         title: data.title,
+    //         vote_average: data.vote_average,
+    //     };
 
-        return object;
-    };
+    //     return object;
+    // };
 
     console.log('movieList', movieList);
     return (

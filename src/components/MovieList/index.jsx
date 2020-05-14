@@ -3,9 +3,6 @@
 import React, { Fragment } from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-
 import IMAGES from './../../library/images';
 
 import useStyles from './styles';
