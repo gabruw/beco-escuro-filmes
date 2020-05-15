@@ -14,8 +14,8 @@ import useStyles from './styles';
 //#endregion
 
 const SearchField = ({ searchIn }) => {
-    const [loading, setLoading] = useState(false);
     const styles = useStyles();
+    const [loading, setLoading] = useState(false);
 
     const search = async (value) => {
         setLoading(true);
@@ -41,6 +41,7 @@ const SearchField = ({ searchIn }) => {
                         </InputAdornment>
                     ),
                 }}
+                value='A Horse Tale'
                 onKeyUp={(e) => (EVENTS.ON_PRESS_ENTER(e) ? search(e.target.value) : null)}
             />
         </Fragment>

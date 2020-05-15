@@ -1,13 +1,14 @@
 //#region Imports
 
-import React, { Fragment } from 'react';
-
+import React, { Fragment, useRef, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
+
 import SearchField from '../SearchField/index';
+import ModalStyled from '../../containers/ModalSelectMovies/index';
 
 import API from './../../services/api';
 import STATUS from './../../library/status';
-import ENDPOINTS from './../../library/endpoints';
+import { ENDPOINTS, blankEncodeToUrl } from './../../library/endpoints';
 
 import useStyles from './styles';
 
@@ -16,44 +17,61 @@ import useStyles from './styles';
 const MoviePresentation = () => {
     const styles = useStyles();
 
-    const getMovie = async (title) => {
-        const regex = new RegExp(' ', 'g');
-        title = title.replace(regex, '%20').trim();
+    const handleModalSelectMovies = useRef();
+    const [movieList, setMovieList] = useState([]);
+
+    const getMovies = async (title) => {
+        title = blankEncodeToUrl(title);
 
         const {
             status,
             data: { results, total_results },
         } = await API.get(ENDPOINTS.TMDB_MOVIES_BY_TITLE(title));
 
-        if (STATUS.OK(status) && total_results > 0) {
-            const { data } = await API.get(ENDPOINTS.TMDB_MOVIES_BY_ID(results[0].id));
-            const object = {
-                id: data.id,
-                genres: data.genres,
-                original_title: data.original_title,
-                overview: data.overview,
-                poster_path: data.poster_path,
-                release_date: data.release_date,
-                runtime: data.runtime,
-                title: data.title,
-                vote_average: data.vote_average,
-            };
+        if (STATUS.OK(status)) {
+            if (total_results > 0) {
+                setMovieList(results);
+                handleModalSelectMovies.current.handleModal();
+            }
 
-            console.log(object);
+            // if (total_results === 1) {
+            //     setMovieList(getOneOf(results[0].id));
+            // } else if (total_results > 1) {
+            //     handleModalSelectMovies.current.handleModal();
+            // }
         }
 
-        return '';
+        return results;
     };
+
+    // const getOneOf = async (id) => {
+    //     const { data } = await API.get(ENDPOINTS.TMDB_MOVIES_BY_ID(id));
+    //     const object = {
+    //         id: data.id,
+    //         genres: data.genres,
+    //         original_title: data.original_title,
+    //         overview: data.overview,
+    //         poster_path: data.poster_path,
+    //         release_date: data.release_date,
+    //         runtime: data.runtime,
+    //         title: data.title,
+    //         vote_average: data.vote_average,
+    //     };
+
+    //     return object;
+    // };
 
     return (
         <Fragment>
             <Grid container className={styles.background}>
                 <Grid item xs={12} className={styles.marginTop}>
                     <div className={styles.alignCenter}>
-                        <SearchField searchIn={getMovie} />
+                        <SearchField searchIn={getMovies} />
                     </div>
                 </Grid>
             </Grid>
+
+            <ModalStyled ref={handleModalSelectMovies} movieList={movieList} />
         </Fragment>
     );
 };

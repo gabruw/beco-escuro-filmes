@@ -5,7 +5,7 @@ import { combineReducers } from 'redux';
 //#endregion
 
 const reducers = combineReducers({
-    moviesReducer: require('../movies/index').moviesReducer,
+    moviesReducer: require('./movies').moviesReducer,
 });
 
 export default reducers;

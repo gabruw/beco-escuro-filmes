@@ -13,6 +13,7 @@ const AssertButton = ({
     haveIcon = false,
     isDisabled = false,
     text = 'Sample Text',
+    onClick = false,
 }) => {
     const styles = useStyles(isPrimaryOutlined);
 
@@ -20,7 +21,13 @@ const AssertButton = ({
     const className = isContained ? styles.contained : styles.outlined;
     return (
         <Fragment>
-            <Button variant={variant} className={className} startIcon={haveIcon} disabled={isDisabled}>
+            <Button
+                variant={variant}
+                className={className}
+                startIcon={haveIcon}
+                disabled={isDisabled}
+                onClick={() => onClick && onClick()}
+            >
                 {text}
             </Button>
         </Fragment>
