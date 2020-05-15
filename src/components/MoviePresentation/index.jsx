@@ -3,9 +3,8 @@
 import React, { Fragment, useRef, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import MovieList from './../MovieList/index';
 import SearchField from '../SearchField/index';
-import ModalStyled from './../../containers/ModalStyled/index';
+import ModalStyled from '../../containers/ModalSelectMovies/index';
 
 import API from './../../services/api';
 import STATUS from './../../library/status';
@@ -28,9 +27,6 @@ const MoviePresentation = () => {
             status,
             data: { results, total_results },
         } = await API.get(ENDPOINTS.TMDB_MOVIES_BY_TITLE(title));
-
-        console.log('results', results);
-        console.log('total_results', total_results);
 
         if (STATUS.OK(status)) {
             if (total_results > 0) {
@@ -65,7 +61,6 @@ const MoviePresentation = () => {
     //     return object;
     // };
 
-    console.log('movieList', movieList);
     return (
         <Fragment>
             <Grid container className={styles.background}>
@@ -76,7 +71,7 @@ const MoviePresentation = () => {
                 </Grid>
             </Grid>
 
-            <ModalStyled ref={handleModalSelectMovies} body={<MovieList list={movieList} />} />
+            <ModalStyled ref={handleModalSelectMovies} movieList={movieList} />
         </Fragment>
     );
 };
