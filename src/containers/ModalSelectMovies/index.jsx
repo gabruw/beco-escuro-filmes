@@ -1,7 +1,7 @@
 //#region Imports
 
-import React, { Fragment, useState, useReducer, forwardRef, useImperativeHandle } from 'react';
-import { MOVIE_INITIAL_STATE, MOVIE_REDUCER } from '../../store/reducer/movies';
+import React, { Fragment, useState, useContext, forwardRef, useImperativeHandle } from 'react';
+import MoviesContext from './../../store/context/movies';
 
 import Grid from '@material-ui/core/Grid';
 import Fade from '@material-ui/core/Fade';
@@ -22,7 +22,7 @@ const ModalSelectMovies = forwardRef((props, ref) => {
     const styles = useStyles();
 
     const [open, setOpen] = useState(false);
-    const [movieState] = useReducer(MOVIE_REDUCER, MOVIE_INITIAL_STATE);
+    const moviesContext = useContext(MoviesContext);
 
     useImperativeHandle(ref, () => ({
         handleModal() {
@@ -30,7 +30,7 @@ const ModalSelectMovies = forwardRef((props, ref) => {
         },
     }));
 
-    const disableButton = movieState.checkedMovies.length < 1;
+    const disableButton = moviesContext.checkedMovies.length < 1;
     return (
         <Fragment>
             <Grid container>
