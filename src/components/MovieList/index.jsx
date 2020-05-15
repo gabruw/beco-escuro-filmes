@@ -1,7 +1,7 @@
 //#region Imports
 
-import React, { Fragment, useReducer } from 'react';
-import { MOVIE_INITIAL_STATE, MOVIE_REDUCER, MOVIE_CREATORS } from '../../store/reducer/movies';
+import React, { Fragment, useContext } from 'react';
+import { MoviesContext, setCheckedInMovieContext } from './../../store/context/movies';
 
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -15,21 +15,24 @@ import useStyles from './styles';
 
 const MovieList = ({ isSelectable = false, list }) => {
     const styles = useStyles();
+    const moviesContext = useContext(MoviesContext);
 
-    const [movieState, movieDispatch] = useReducer(MOVIE_REDUCER, MOVIE_INITIAL_STATE);
-
-    const addSelectedMovie = (idMovie) => {
+    const manageSelectedMovies = (idMovie) => {
         idMovie = Number(idMovie);
-        const selected = movieState.checkedMovies.filter((value) => value.id === idMovie);
+        const { checkedMovies } = moviesContext;
+        const selected = checkedMovies.filter((value) => value.id === idMovie);
 
         switch (selected.length) {
             case 0:
-                const getMovie = list.filter((value) => value.id === idMovie);
-                movieDispatch(MOVIE_CREATORS.addCheckedMovie(getMovie));
+                const movie = list.filter((value) => value.id === idMovie);
+                const added = checkedMovies.concat(movie);
 
+                setCheckedInMovieContext(added);
                 break;
             case 1:
-                movieDispatch(MOVIE_CREATORS.removeCheckedMovie(idMovie));
+                const remove = checkedMovies.filter((value) => value.id !== idMovie);
+                setCheckedInMovieContext(remove);
+
                 break;
             default:
                 console.log('Erro: O filme selecionado estourou a lista.');
@@ -53,7 +56,7 @@ const MovieList = ({ isSelectable = false, list }) => {
                                                 id={`${index}Check`}
                                                 icon={<CheckCircleOutlineIcon className={styles.checkbox} />}
                                                 checkedIcon={<CheckCircleIcon className={styles.checkbox} />}
-                                                onChange={(e) => addSelectedMovie(e.target.value)}
+                                                onChange={(e) => manageSelectedMovies(e.target.value)}
                                             />
                                         </div>
                                     )}
