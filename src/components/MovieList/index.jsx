@@ -1,7 +1,7 @@
 //#region Imports
 
 import React, { Fragment, useContext } from 'react';
-import { MoviesContext, setCheckedInMovieContext } from './../../store/context/movies';
+import MovieContext from '../../store/movies';
 
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -15,24 +15,19 @@ import useStyles from './styles';
 
 const MovieList = ({ isSelectable = false, list }) => {
     const styles = useStyles();
-    const moviesContext = useContext(MoviesContext);
+    const { state, addCheckedMovie, removeCheckedMovie } = useContext(MovieContext);
 
     const manageSelectedMovies = (idMovie) => {
-        idMovie = Number(idMovie);
-        const { checkedMovies } = moviesContext;
-        const selected = checkedMovies.filter((value) => value.id === idMovie);
+        const selected = state.checkedMovies.filter((value) => value.id === idMovie);
 
         switch (selected.length) {
             case 0:
                 const movie = list.filter((value) => value.id === idMovie);
-                const added = checkedMovies.concat(movie);
+                addCheckedMovie(movie);
 
-                setCheckedInMovieContext(added);
                 break;
             case 1:
-                const remove = checkedMovies.filter((value) => value.id !== idMovie);
-                setCheckedInMovieContext(remove);
-
+                removeCheckedMovie(idMovie);
                 break;
             default:
                 console.log('Erro: O filme selecionado estourou a lista.');
@@ -56,7 +51,7 @@ const MovieList = ({ isSelectable = false, list }) => {
                                                 id={`${index}Check`}
                                                 icon={<CheckCircleOutlineIcon className={styles.checkbox} />}
                                                 checkedIcon={<CheckCircleIcon className={styles.checkbox} />}
-                                                onChange={(e) => manageSelectedMovies(e.target.value)}
+                                                onChange={(e) => manageSelectedMovies(Number(e.target.value))}
                                             />
                                         </div>
                                     )}

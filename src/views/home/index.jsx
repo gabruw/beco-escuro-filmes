@@ -1,6 +1,7 @@
 //#region Imports
 
 import React, { Fragment } from 'react';
+import { MovieContextProvider } from '../../store/movies';
 
 import NavBar from '../../components/NavBar/index';
 import Footer from '../../components/Footer/index';
@@ -12,7 +13,9 @@ const Home = () => {
     return (
         <Fragment>
             <NavBar />
-            <MoviePresentation />
+            <MovieContextProvider>
+                <MoviePresentation />
+            </MovieContextProvider>
             <Footer />
         </Fragment>
     );
